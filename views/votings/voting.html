@@ -1,0 +1,98 @@
+{% extends "layout.html" %}
+
+{% block style %}
+  <link rel="stylesheet" href="/stylesheets/voting.css" />
+{% endblock style %}
+
+{% block content %}
+{% include "partials/header.html" %}
+{% include "partials/navbar.html" %}
+  <div class="voting container">
+    <div class="voting__nav">
+      <div class="toVoteList">
+        <a href="/">👈🏻 투표 목록으로 돌아가기</a>
+      </div>
+      {% if isCreator %}
+        <button id="deleteBtn" data-id="{{ voting._id }}">
+          삭제
+        </button>
+      {% endif %}
+    </div>
+    <h1 class="voting__title">{{ voting.title }}</h1>
+    <div class="voting__info">
+      <p>투표 작성자 : {{ voting.creator }}</p>
+      <p>종료일 : {{ voting.expiredAt }}</p>
+      <p class="voting__isActive
+        {% if not voting.isActive %}
+          false
+        {% endif %}"
+      >
+        투표
+        {% if voting.isActive %}
+          진행 중
+        {% else %}
+          종료
+        {% endif %}
+      </p>
+    </div>
+    <form
+      method="POST"
+      action="/votings/{{ voting._id }}"
+      class="voting__form"
+      onsubmit="handleSubmit('#submitVoteBtn')"
+      novalidate
+    >
+      {% set maxVotes = 0 %}
+      {% for option in voting.options %}
+        {% if option.votedUsers.length > maxVotes %}
+          {% set maxVotes = option.votedUsers.length %}
+        {% endif %}
+      {% endfor %}
+
+      <ul class="options__container">
+        {% for option in voting.options %}
+          <li class="option__block
+            {% if option.votedUsers.length === maxVotes
+              and not voting.isActive %}
+              most-voted
+            {% elif not voting.isActive %}
+              others
+            {% endif %}"
+          >
+            <div class="option">
+              {% if voting.isActive %}
+                <input
+                  type="radio"
+                  id="option_{{ option._id }}"
+                  name="option"
+                  value="{{ option._id }}"
+                  required
+                />
+              {% endif %}
+              <label for="option_{{ option._id }}">
+                {{ option.content }}
+              </label>
+            </div>
+            {% if not voting.isActive or isCreator %}
+              <p>{{ option.votedUsers.length }} 표</p>
+            {% endif %}
+          </li>
+        {% endfor %}
+      </ul>
+
+      {% if error %}
+        <div class="form__error">{{ error.message or error }}</div>
+      {% endif %}
+
+      {% if voting.isActive %}
+        <button type="submit" id="submitVoteBtn">
+          투표
+        </button>
+      {% endif %}
+    </form>
+  </div>
+{% endblock %}
+
+{% block script %}
+  <script src="/javascripts/voting.js"></script>
+{% endblock %}

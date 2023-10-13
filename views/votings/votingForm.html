@@ -1,0 +1,59 @@
+{% extends "layout.html" %}
+
+{% block style %}
+  <link rel="stylesheet" href="/stylesheets/voting.css" />
+{% endblock style %}
+
+{% block content %}
+{% include "partials/header.html" %}
+{% include "partials/navbar.html" %}
+<section class="container">
+  <div class="toVoteList">
+    <a href="/">👈🏻 투표 목록으로 돌아가기</a>
+  </div>
+
+  <form method="POST" action="/votings/new" class="form__voting" novalidate>
+    <div class="form__block">
+      <label for="title" class="title">투표 제목</label>
+      <input type="text" id="title" name="title" required />
+    </div>
+    {% if error and error.title %}
+      <div class="form__error titleError">
+        {{ error.title }}
+      </div>
+    {% endif %}
+    <div class="form__block">
+      <label for="expiredAt" class="expiredAt">종료 시간</label>
+      <input type="datetime-local" id="expiredAt" name="expiredAt" required />
+    </div>
+    {% if error and error.expiredAt %}
+      <div class="form__error expiredAtError">
+        {{ error.expiredAt }}
+      </div>
+    {% endif %}
+    <div class="form__block form__block--options">
+      <div class="options__header">
+        <div class="options__title">투표 항목</div>
+        <button type="button" class="addOptionBtn">➕ 항목 추가</button>
+      </div>
+      <div class="form__block--option">
+        <input type="text" class="options" name="options" required />
+      </div>
+      <div class="form__block--option">
+        <input type="text" class="options" name="options" required />
+      </div>
+    </div>
+    {% if error and error.options %}
+      <div class="form__error optionsError">
+        {{ error.options }}
+      </div>
+    {% endif %}
+    <button id="createVoteBtn" type="submit">투표 생성</button>
+  </form>
+</section>
+{% endblock %}
+
+{% block script %}
+  <script src="/javascripts/votingForm.js"></script>
+  <script src="/javascripts/filter.js"></script>
+{% endblock %}

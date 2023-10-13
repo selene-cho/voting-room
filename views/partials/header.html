@@ -1,0 +1,26 @@
+<header>
+  <div class="header__left">
+    <a href="/" class="logo">Voting Room</a>
+  </div>
+
+  <div class="header__right">
+    {% if not isAuthenticated %}
+      <button class="header__button--signup">
+        <a href="/signup">
+          Sign up
+        </a>
+      </button>
+      <button class="header__button--login">
+        <a href="/login">
+          Login
+        </a>
+      </button>
+    {% else %}
+      <form action="/logout" method="POST">
+        <button type="submit" class="header__button--logout">
+          Logout
+        </button>
+      </form>
+    {% endif %}
+  </div>
+</header>

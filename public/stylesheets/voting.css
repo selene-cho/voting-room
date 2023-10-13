@@ -1,0 +1,256 @@
+.container {
+  padding: 30px 50px;
+  height: calc(100vh - 120px);
+}
+
+/* index */
+
+.voting__list {
+  display: flex;
+  flex-direction: column;
+  width: 980px;
+  margin: 0 auto;
+  margin-top: 10px;
+}
+
+.voting__header {
+  display: grid;
+  grid-template-columns: 2fr 100px 1fr 150px;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 500;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+  border-bottom: 5px double #dae5d0;
+}
+
+.voting__block {
+  font-size: 14px;
+  display: grid;
+  grid-template-columns: 2fr 100px 1fr 150px;
+  text-align: center;
+  margin: 10px 0;
+  padding-bottom: 20px;
+  font-size: 16px;
+  border-bottom: 1px solid #dae5d0;
+}
+
+.voting__list__title:hover,
+.voting__list__title:focus {
+  font-weight: 500;
+  color: #e7b10a;
+}
+
+/* voting */
+
+.voting.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 980px;
+  margin: 0 auto;
+}
+
+.voting__nav {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+#deleteBtn {
+  padding: 5px 10px;
+  border: 1px solid #6d8b74;
+  color: #6d8b74;
+  font-size: 14px;
+}
+
+#deleteBtn:hover,
+#deleteBtn:focus {
+  border: 1px solid #e7b10a;
+}
+
+.voting__title {
+  text-align: center;
+  width: 100%;
+  font-size: 24px;
+  font-weight: 700;
+  padding: 20px 0;
+  margin-bottom: 10px;
+  border-bottom: 1px double #d0c9c0;
+}
+
+.voting__info {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  font-size: 16px;
+  margin: 10px 0;
+  padding-bottom: 20px;
+  border-bottom: 5px double #d0c9c0;
+}
+
+.voting__isActive.false {
+  color: #8f0202;
+  font-weight: 500;
+}
+
+.voting__form {
+  width: 800px;
+}
+
+.options__container {
+  width: 100%;
+  margin-bottom: 50px;
+}
+
+.option__block {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 20px 0;
+  padding: 20px 20px;
+  border-bottom: 1px solid #d3d3d3;
+}
+
+.option__block.most-voted {
+  background-color: #fff4f4;
+}
+.option__block.others {
+  color: #6b6b6b;
+}
+
+.option {
+  display: flex;
+}
+
+.option input {
+  margin-right: 10px;
+}
+
+.option input:hover,
+.option input:focus,
+.option label:hover,
+.option label:focus {
+  cursor: pointer;
+}
+
+#submitVoteBtn {
+  display: block;
+  padding: 10px 20px;
+  border-radius: 10px;
+  background-color: #606c5d;
+  color: #fff;
+  margin: 0 auto;
+  font-weight: 500;
+}
+#submitVoteBtn:hover,
+#submitVoteBtn:focus {
+  background-color: #485245;
+}
+
+/* votingForm */
+
+.toVoteList {
+  text-align: left;
+  color: #6d8b74;
+}
+
+.toVoteList a:hover,
+.toVoteList a:focus {
+  color: #d0c9c0;
+}
+
+.form__voting {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  margin-top: 25px;
+  width: 680px;
+}
+
+.form__block {
+  display: flex;
+  width: 100%;
+  height: 50px;
+  margin-bottom: 10px;
+  align-items: center;
+}
+
+.form__block label {
+  display: inline-block;
+  width: 140px;
+  font-weight: 500;
+  font-size: 18px;
+}
+
+.form__block input {
+  width: 100%;
+  padding: 10px 10px;
+  border-radius: 0.3rem;
+  border: 1px solid lightgray;
+}
+
+.form__block--options {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%
+}
+
+.form__block .options__header {
+  display: flex;
+  flex: 1 1 0;
+  align-items: center;
+  width: 100%;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  font-weight: 500;
+}
+
+.options__title {
+  flex: 6 1 0;
+  font-size: 18px;
+  text-align: center;
+}
+
+.addOptionBtn {
+  padding: 5px 10px;
+  border: 1px solid lightgray;
+  text-align: right;
+}
+
+.form__block--option {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.form__block--option .deleteOptionBtn {
+  width: 100px;
+  margin-left: 10px;
+  padding: 5px 10px;
+  border: 1px solid #6d8b74;
+  color: #6d8b74;
+  font-size: 14px;
+}
+
+.form__block--option .deleteOptionBtn:hover,
+.form__block--option .deleteOptionBtn:focus {
+  border: 1px solid #e7b10a;
+}
+
+#createVoteBtn {
+  padding: 10px 18px;
+  border-radius: 10px;
+  background-color: #606c5d;
+  color: #fff;
+}
+
+.form__error {
+  font-size: 14px;
+  margin-bottom: 20px;
+  color: #ff0000;
+  text-align: right;
+}

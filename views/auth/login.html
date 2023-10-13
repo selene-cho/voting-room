@@ -1,0 +1,55 @@
+{% extends "../layout.html" %}
+
+{% block style %}
+  <link rel="stylesheet" href="/stylesheets/auth.css" />
+{% endblock style %}
+
+{% block content %}
+  <form class="form form--lg" method="POST" action="/login" novalidate>
+    <h1 class="logo">
+      <a href="/">Voting Room</a>
+    </h1>
+    <h1 class="form__title">로그인</h1>
+    <div class="form__block">
+      <label htmlFor="email">이메일</label>
+      <input
+        type="email"
+        name="email"
+        id="email"
+        required
+      />
+    </div>
+    <div class="form__block">
+      <label htmlFor="password">비밀번호</label>
+      <input
+        type="password"
+        name="password"
+        id="password"
+        required
+      />
+    </div>
+    {% if error %}
+      <div class="form__error">
+        {{ error.message or error}}
+      </div>
+    {% endif %}
+    <div class="form__block">
+      <button
+        type="submit"
+        class="form__btn--submit"
+        >
+        로그인
+      </button>
+    </div>
+    <div class="form__divider"></div>
+    <div class="form__block form__link--text">
+      아직 회원이 아니신가요?
+      <a href="/signup" class="form__link">
+        회원가입 하러가기
+      </a>
+    </div>
+  </form>
+{% endblock content %}
+
+{% block script %}
+{% endblock script %}

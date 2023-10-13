@@ -1,0 +1,60 @@
+{% extends "layout.html" %}
+
+{% block style %}
+  <link rel="stylesheet" href="/stylesheets/voting.css" />
+{% endblock style %}
+
+{% block content %}
+{% include "partials/header.html" %}
+{% include "partials/navbar.html" %}
+<section class="container">
+  <ul class="voting__list">
+    <li class="voting__header">
+      <h1 class="voting__header__title">제목</h1>
+      <p class="voting__header__creator">투표 작성자</p>
+      <p class="voting__header__expiredAt">투표 종료일</p>
+      <p class="voting__header__isActive">투표 진행 여부</p>
+    </li>
+    {% if votings and votings.length > 0 %}
+      {% for voting in votings %}
+        <li class="voting__block all
+          {% if voting.isActive %}
+            isActive
+          {% else %}
+            isActiveFalse
+          {% endif %}"
+        >
+          <p class="voting__list__title">
+            <a href="/votings/{{ voting._id }}">
+              {{ voting.title }}
+            </a>
+          </p>
+          <p class="voting__list__creator">
+            {{ voting.creator }}
+          </p>
+          <p class="voting__list__expiredAt">
+            {{ voting.expiredAt }}
+          </p>
+          {% if voting.isActive %}
+            <p class="voting__list__isActive">
+              진행 중
+            </p>
+          {% else %}
+            <p class="voting__list__isActive">
+              종료
+            </p>
+          {% endif %}
+        </li>
+      {% endfor %}
+    {% endif %}
+  </ul>
+  {% if error %}
+    <div class="error">{{ error.message or error }}</div>
+  {% endif %}
+</section>
+
+{% endblock %}
+
+{% block script %}
+  <script src="/javascripts/filter.js"></script>
+{% endblock  %}
